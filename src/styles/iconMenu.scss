@@ -1,0 +1,66 @@
+@import 'comment/function';
+
+.menu-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #999;
+  bottom: 0;
+  padding: 4px;
+  width: 200px;
+  overflow: hidden;
+  h2{
+    font-size: 16px;
+  }
+}
+
+.icon-memu-exhibit{
+  width: 53px;
+  height: 50px;
+  background-color: #999;
+  padding: 15px;
+  @include box(border-box);
+  .ex{
+    width: 100%;
+    height: 4px;
+    background-color: #FFF;
+    margin-top: 4px;
+    @include transition(transform .3s ease,margin-left .3s ease);
+    &:first-child{
+      margin-top: 0;
+    }
+  }
+}
+
+.icon-menu-constrate>.ex-top{
+  @include transform(left,rotate(45deg));
+}
+.icon-menu-constrate>.ex-mid{
+  margin-left: -64px;
+  visibility: hidden;
+}
+.icon-menu-constrate>.ex-bot{
+  @include transform(left,rotate(-45deg));
+}
+
+.menu-list li{
+  position: relative;
+  width: 200px;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  @include box(border-box);
+  &.menu-li{
+    width: 54px;
+  }
+  .li-icon{
+    width: 26px;
+    height: 26px;
+    padding: 4px;
+    margin-top: 6px;
+    img{
+      width: 100%;
+    }
+  }
+}
+

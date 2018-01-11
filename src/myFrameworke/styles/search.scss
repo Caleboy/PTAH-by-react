@@ -1,0 +1,19 @@
+@import '../../styles/comment/function';
+.search-form{
+  border: 1px solid #999999;
+  min-width: 296px;
+  @include box(border-box);
+  .search-icon{
+    padding: 3px;
+    cursor: pointer;
+    @include box(border-box);
+    img{
+      width: 100%;
+    }
+  }
+  input{
+    float:left;
+    height: 100%;
+    border: transparent;
+  }
+}

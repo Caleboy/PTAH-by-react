@@ -1,0 +1,21 @@
+@import 'comment/function';
+@import '../myFrameworke/styles/search';
+@import '../myFrameworke/styles/select';
+.main{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #FFF;
+  bottom: 0;
+  .main-bar{
+    float: left;
+    width: 44%;
+    min-height: 300px;
+    padding: 30px;
+    margin: 20px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    overflow-x: auto;
+    @include box(border-box);
+  }
+}

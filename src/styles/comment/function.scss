@@ -1,0 +1,33 @@
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+@mixin box($border) {
+  -webkit-box-sizing: $border;
+  -moz-box-sizing: $border;
+  box-sizing: $border;
+}
+
+@mixin transition($transitions...) {
+  -moz-transition: $transitions; /* Firefox 4 */
+  -webkit-transition: $transitions; /* Safari 和 Chrome */
+  -o-transition: $transitions; /* Opera */
+  transition: $transitions;
+}
+
+@mixin transform($origin,$rotate) {
+  transform-origin: $origin;
+  transform: $rotate;
+
+  -ms-transform-origin: $origin; 		/* IE 9 */
+  -ms-transform: $rotate; 		/* IE 9 */
+
+  -webkit-transform-origin: $origin;	/* Safari 和 Chrome */
+  -webkit-transform: $rotate;	/* Safari 和 Chrome */
+
+  -moz-transform-origin: $origin;		/* Firefox */
+  -moz-transform: $rotate;		/* Firefox */
+
+  -o-transform-origin: $origin;		/* Opera */
+  -o-transform: $rotate;		/* Opera */
+}

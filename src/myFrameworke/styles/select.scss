@@ -1,0 +1,44 @@
+@import '../../styles/comment/function';
+.select-bar{
+  border: 1px solid #999999;
+  color: #666666;
+  position: relative;
+  cursor: pointer;
+  @include box(border-box);
+  .select-rc{
+    width: 100%;
+    padding: 0 6px;
+    @include box(border-box);
+    .select-contant{
+      height: 100%;
+      float: left;
+    }
+    .select-icon{
+      float: right;
+      margin-right: 4px;
+      padding: 2px;
+      @include box(border-box);
+      img{
+        width: 100%;
+      }
+    }
+  }
+
+  .select-options{
+    position: absolute;
+    width: 100%;
+    border: 1px solid #999999;
+    left: -1px;
+    display: none;
+    max-height: 200px;
+    overflow: auto;
+    background-color: #FFFFFF;
+    z-index: 99999;
+  }
+}
+.option{
+  padding: 0 4px;
+  &:hover{
+    background-color: #999999;
+  }
+}
