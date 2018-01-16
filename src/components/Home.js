@@ -1,7 +1,9 @@
 require('../styles/main.scss');
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Search from '../myFrameworke/components/Search';
-import {Select,Option} from '../myFrameworke/components/Select';
+import Select from '../myFrameworke/components/Select';
+
+const Option = Select.Option;
 
 class Home extends React.Component {
   constructor(props) {
@@ -51,6 +53,9 @@ class Home extends React.Component {
             <Option>888</Option>
           </Select>
         </div>
+        <div className="main-bar"></div>
+        <div className="main-bar"></div>
+        <div className="main-bar"></div>
       </div>
     );
   }
@@ -62,7 +67,8 @@ class Home extends React.Component {
   }
 }
 
-Home.defaultProps = {
+Home.PropTypes = {
+  switched: PropTypes.bool.isRequired
 };
 
 export default Home;
