@@ -1,0 +1,40 @@
+.icon{
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  &:hover{
+    background-color: #AAAAAA;
+  }
+  &.icon-loading:before{
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    border: 2px solid;
+    border-color: transparent #EAC12E #EAC12E #EAC12E;
+    border-radius: 50%;
+    animation: mymove .5s infinite;
+    -webkit-animation: mymove .5s infinite;
+  }
+}
+
+@keyframes mymove {
+  0% {transform: rotate(0deg);}
+  50% {transform: rotate(180deg);}
+  100% {transform: rotate(360deg);}
+}
+
+.icon-search{
+  background: url('../images/search.png') no-repeat 0 0;
+  background-size: contain;
+  &.action-search{
+    background-image: url('../images/search-action.png');
+  }
+}

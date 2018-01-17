@@ -11,8 +11,12 @@
     padding: 0 6px;
     @include box(border-box);
     .select-contant{
+      width: 100%;
       height: 100%;
       float: left;
+      border: 0;
+      color: #333333;
+      overflow: hidden;
     }
   }
 
@@ -23,6 +27,14 @@
     margin-right: 4px;
     padding: 2px;
     @include box(border-box);
+    &.spin>img{
+      transform: rotate(180deg);
+      -webkit-transition: transform .2s;
+      -moz-transition: transform .2s;
+      -ms-transition: transform .2s;
+      -o-transition: transform .2s;
+      transition: transform .2s;
+    }
     img{
       width: 100%;
     }
