@@ -1,8 +1,9 @@
-@import '../../styles/comment/function';
+@import 'comment/function';
 .search-form{
   border: 1px solid #999999;
   min-width: 296px;
   @include box(border-box);
+  @include radus(4px);
   .search-icon{
     padding: 3px;
     cursor: pointer;

@@ -1,19 +1,19 @@
-require('../styles/icon.scss')
+require('../styles/icon.scss');
 import React, { PropTypes } from 'react';
 import omit from '../commentJs/omit';
 import classNames from '../commentJs/classNames';
 
 const Icon = (props) => {
-  const { type, spin, className } = props;
-  const action = spin ? `action-${type}` : !!'';
+  const { type, spin, className, children } = props;
+  const action = spin ? `action-${type}` : '';
   const classString = classNames({
     props: className,
     type,
     action
-  });
+  }, 'icon');
   return (
     <i {...omit(props, ['type','spin'])} className={classString}>
-      {props.children}
+      {children}
     </i>
   )
 }
@@ -22,7 +22,8 @@ Icon.PropTypes = {
   spin: PropTypes.boolean,
   className: PropTypes.string,
   onClick: PropTypes.func,
-  style: PropTypes.object
+  style: PropTypes.object,
+  children: PropTypes.element
 }
 
 export default Icon;

@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react';
 import Search from '../myFrameworke/components/Search';
 import Select from '../myFrameworke/components/Select';
 import Icon from '../myFrameworke/components/Icon';
+import Button from '../myFrameworke/components/Button';
 
 const Option = Select.Option;
 
@@ -78,7 +79,19 @@ class Home extends React.Component {
           <br/>
           <Icon type="search" spin={true}/>
         </div>
-        <div className="main-bar"></div>
+        <div className="main-bar">
+          <h3>Button</h3>
+          <Button>button</Button>
+          <br/>
+          <Button type="primary">Primary</Button>
+          <br/>
+          <Button type="default">Default</Button>
+          <br/>
+          <Button type="disabled">Disabled</Button>
+        </div>
+        <div className="main-bar">
+          <h3>DatePicker</h3>
+        </div>
       </div>
     );
   }

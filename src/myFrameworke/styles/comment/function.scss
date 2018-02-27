@@ -8,6 +8,12 @@
   box-sizing: $border;
 }
 
+@mixin radus($r) {
+  -webkit-border-radius: $r;
+  -moz-border-radius: $r;
+  border-radius: $r;
+}
+
 @mixin transition($transitions...) {
   -moz-transition: $transitions; /* Firefox 4 */
   -webkit-transition: $transitions; /* Safari 和 Chrome */

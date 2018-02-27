@@ -48,6 +48,12 @@ export default (WrappedComponent) => {
         optionsSwitch: true
       })
     }
+    onHandleblur(e){
+      e.stopPropagation();
+      this.setState({
+        optionsSwitch: false
+      })
+    }
     onHandleChange(e){
       let props = this.props;
       let value = e.target.value;
@@ -63,9 +69,11 @@ export default (WrappedComponent) => {
       const size = this.props.size && this.props.size==='big' ? 32 : 26;
       const classString = `select-bar ${className}`;
       const newProps = {
+        focus: this.state.optionsSwitch,
         name: {
           value: this.state.value,
           onFocus: this.onHandleFocus.bind(this),
+          onBlur: this.onHandleblur.bind(this),
           onChange: this.onHandleChange.bind(this)
         }
       }
@@ -93,10 +101,9 @@ export default (WrappedComponent) => {
               <img src={require('../../images/down.png')} alt="down"/>
             </span>
           }
-
           <div
             className="select-options"
-            style={{top: `${size - 1}px`,display: this.state.optionsSwitch?'block':'none'}}
+            style={{paddingTop:this.props.mode === 'tags' ? `${size}px` : 0,display: this.state.optionsSwitch?'block':'none'}}
             onClick={(e) => this._childHandleClick(e)}
           >
             {children.map(child => child)}
@@ -119,6 +126,7 @@ export default (WrappedComponent) => {
     _childHandleClick(e){
       let props = this.props;
       let value = e.target.innerHTML;
+      if(e.target.className !== 'option') return;
       if(props.onSelect && typeof props.onSelect === 'function'){
         props.onSelect(value);
       }

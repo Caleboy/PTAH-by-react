@@ -8,7 +8,7 @@ class Search extends React.Component {
     }
   }
   render() {
-    const size = this.props.size && this.props.size==='big' ? 40 : 30;
+    const size = this.props.size && this.props.size==='big' ? 36 : 28;
     return (
       <div
         className="search-form"

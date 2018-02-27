@@ -1,4 +1,5 @@
 /* Base Application Styles */
+@import '../myFrameworke/styles/comment/function';
 body {
   color: #FFF;
   background: #EFEFEF;
@@ -16,14 +17,7 @@ input, select {
   outline: none;
   border: 1px solid #999;
   padding: 2px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.box{
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  @include box(border-box);
 }
 
 .clear-box:after {
