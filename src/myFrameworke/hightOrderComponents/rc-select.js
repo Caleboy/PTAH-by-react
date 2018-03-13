@@ -101,13 +101,15 @@ export default (WrappedComponent) => {
               <img src={require('../../images/down.png')} alt="down"/>
             </span>
           }
-          <div
-            className="select-options"
-            style={{paddingTop:this.props.mode === 'tags' ? `${size}px` : 0,display: this.state.optionsSwitch?'block':'none'}}
-            onClick={(e) => this._childHandleClick(e)}
-          >
-            {children.map(child => child)}
-          </div>
+          {
+            this.state.optionsSwitch ? <div
+              className="select-options"
+              style={{top:`${size}px`, display: this.state.optionsSwitch ? 'block' : 'none'}}
+              onClick={(e) => this._childHandleClick(e)}
+            >
+              {children.map(child => child)}
+            </div> : ''
+          }
         </div>
       );
     }

@@ -58,10 +58,11 @@
     background-color: #FFFFFF;
     box-shadow: 1px 2px 3px #999999;
     z-index: 99999;
+    @include radus(4px);
   }
 }
 .option{
-  padding: 0 4px;
+  padding: 0 8px;
   &:hover{
     background-color: #999999;
   }

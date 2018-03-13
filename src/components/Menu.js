@@ -1,5 +1,6 @@
 require('../styles/iconMenu.scss');
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import IconMenu from '../myFrameworke/components/IconMenu'
 
@@ -36,7 +37,7 @@ class Menu extends React.Component {
           key={value.index}
           className="clear-box"
           onClick={() => this._menuClick(value.index)}>
-          <h2 style={{color: this.state.switchIndex === value.index ? '#EAC12E' : '#FFF'}}>{value.name}</h2>
+          <Link to={value.img === 'home' ? '/' : value.img}><h2 style={{color: this.state.switchIndex === value.index ? '#EAC12E' : '#FFF'}}>{value.name}</h2></Link>
         </li>
       );
     }.bind(this));
@@ -50,9 +51,11 @@ class Menu extends React.Component {
           key={value.index}
           className="menu-li clear-box"
           onClick={() => this._menuClick(value.index)}>
-          <div className="li-icon">
-            {this.state.switchIndex === value.index ? <img src={require(`../images/${value.img}-active.png`)} alt="li-icon"/> : <img src={require(`../images/${value.img}.png`)} alt="li-icon"/> }
-          </div>
+          <Link to={value.img === 'home' ? '/' : value.img}>
+            <div className="li-icon">
+              {this.state.switchIndex === value.index ? <img src={require(`../images/${value.img}-active.png`)} alt="li-icon"/> : <img src={require(`../images/${value.img}.png`)} alt="li-icon"/> }
+            </div>
+          </Link>
         </li>
       );
     }.bind(this));
