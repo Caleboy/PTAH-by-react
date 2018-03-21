@@ -14,12 +14,11 @@ export default (WrappedComponent) => {
       }
     }
     componentDidUpdate(_, prevState){
-      const self = this;
-      const state = self.state;
+      const self = this,
+        state = self.state;
       if(state.optionsSwitch){
-        let currentDocument;
+        let currentDocument = window.document;
         if (!this.clickOutsideHandler) {
-          currentDocument = window.document;
           this.clickOutsideHandler = currentDocument.addEventListener('mousedown', self.onDocumentClick.bind(self));
         }
         return;
@@ -30,17 +29,20 @@ export default (WrappedComponent) => {
       let self = this,
         currentDocument = window.document;
       if(this.clickOutsideHandler){
-        currentDocument.removeEventListener('mousedown',self.onDocumentClick.bind(self))
+        currentDocument.removeEventListener('mousedown',self.onDocumentClick.bind(self));
       }
     }
     onDocumentClick(event){
-      const root = ReactDOM.findDOMNode(this);
-      const target = event.target;
-      if(!contains(root,target)){
-        this.setState({
-          optionsSwitch: false
-        })
+      if(this.state.optionsSwitch){
+        const target = event.target;
+        const root = ReactDOM.findDOMNode(this);
+        if(!contains(root,target)){
+          this.setState({
+            optionsSwitch: false
+          })
+        }
       }
+
     }
     onHandleFocus(e){
       e.stopPropagation();
@@ -50,9 +52,9 @@ export default (WrappedComponent) => {
     }
     onHandleblur(e){
       e.stopPropagation();
-      this.setState({
-        optionsSwitch: false
-      })
+      // this.setState({
+      //   optionsSwitch: false
+      // })
     }
     onHandleChange(e){
       let props = this.props;
@@ -64,12 +66,14 @@ export default (WrappedComponent) => {
         value
       })
     }
+    componentWillUnmount() {
+      this.clearOutsideHandler();
+    }
     render(){
       const { width, prefix, children, className } = this.props;
       const size = this.props.size && this.props.size==='big' ? 32 : 26;
       const classString = `select-bar ${className}`;
       const newProps = {
-        focus: this.state.optionsSwitch,
         name: {
           value: this.state.value,
           onFocus: this.onHandleFocus.bind(this),
@@ -102,9 +106,10 @@ export default (WrappedComponent) => {
             </span>
           }
           {
+            /* 可以封装组件 */
             this.state.optionsSwitch ? <div
               className="select-options"
-              style={{top:`${size}px`, display: this.state.optionsSwitch ? 'block' : 'none'}}
+              style={{top:`${size - 1}px`, display: this.state.optionsSwitch ? 'block' : 'none'}}
               onClick={(e) => this._childHandleClick(e)}
             >
               {children.map(child => child)}
@@ -113,8 +118,10 @@ export default (WrappedComponent) => {
         </div>
       );
     }
-    _handleClick(){
-      if(this.props.mode === 'tags') return;
+    _handleClick(e){
+      let target = e.target;
+      // if(this.props.mode === 'tags' && this.state.optionsSwitch === true) return;
+      if(target.nodeName === 'INPUT' || target.className.startsWith('dh')) return;
       this.setState({
         optionsSwitch: !this.state.optionsSwitch
       });
@@ -126,12 +133,19 @@ export default (WrappedComponent) => {
       });
     }
     _childHandleClick(e){
-      let props = this.props;
-      let value = e.target.innerHTML;
-      if(e.target.className !== 'option') return;
+      let props = this.props,
+        text = e.target.textContent;
+
+      text = text === 'today' ? new Date().getDate() : text;
+
+      if(e.target.className.startsWith('dh') || text.length > 5) return;
+
+      let value = props.moy ? `${props.moy}-${text}` : text;
+
       if(props.onSelect && typeof props.onSelect === 'function'){
         props.onSelect(value);
       }
+
       this.setState({
         value,
         optionsSwitch: false
@@ -142,7 +156,7 @@ export default (WrappedComponent) => {
     mode: PropTypes.string,
     width: PropTypes.string || PropTypes.number,
     size: PropTypes.string,
-    children: PropTypes.array.isRequired || PropTypes.element.isRequired,
+    children: PropTypes.array || PropTypes.element,
     prefix: PropTypes.element,
     onSelect: PropTypes.func,
     className: PropTypes.string

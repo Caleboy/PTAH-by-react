@@ -1,6 +1,7 @@
 @import '../myFrameworke/styles/comment/function';
 @import '../myFrameworke/styles/search';
 @import '../myFrameworke/styles/select';
+@import '../myFrameworke/styles/date';
 .main{
   position: absolute;
   top: 0;
@@ -16,7 +17,6 @@
     margin: 20px;
     border: 1px solid #999;
     border-radius: 8px;
-    overflow-x: auto;
     @include box(border-box);
     h3{
       color: #333;

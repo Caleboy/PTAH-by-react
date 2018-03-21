@@ -4,8 +4,15 @@ class Search extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      inputWidth: 100,
     }
+  }
+  componentDidMount() {
+    let inputWidth = this.refs.search.offsetWidth
+    this.setState({
+      inputWidth
+    })
   }
   render() {
     const size = this.props.size && this.props.size==='big' ? 36 : 28;
@@ -13,6 +20,7 @@ class Search extends React.Component {
       <div
         className="search-form"
         style={{width:this.props.width?`${this.props.width}px`:'100%',height:`${size}px`}}
+        ref="search"
       >
         <div
           className="search-icon"
@@ -26,7 +34,7 @@ class Search extends React.Component {
         <input
           type="text"
           placeholder={this.props.placeholder}
-          style={{width:this.props.width? (this.props.width- 44):260,fontSize: size / 2.4}}
+          style={{width:this.props.width? (this.props.width- 36):this.state.inputWidth - 36,fontSize: size / 2.4}}
           value={this.state.value}
           onChange={(e) => this.onChangeHandle(e)}
           onKeyDown={(e) => this.onKeyHandle(e)}

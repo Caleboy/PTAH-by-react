@@ -1,8 +1,11 @@
 import { plWeekDate } from './reDate'
+import { weekDayJson } from "./variable"
+import { deepClone } from "./isObject"
+
 /*
  * 生成日历列表
  */
-const pickerDateList = function (m) {
+const picker = function (m) {
   let today = new Date(),
     date = m ? new Date(m) : today,
     year = date.getFullYear(),
@@ -27,15 +30,7 @@ const pickerDateList = function (m) {
   }
 
   for (var j = 0; j < MonthDay; j++) {
-    var dayJson = {
-      mon: [0, false],
-      tue: [0, false],
-      wed: [0, false],
-      thu: [0, false],
-      fri: [0, false],
-      sat: [0, false],
-      sun: [0, false]
-    };
+    var dayJson = deepClone(weekDayJson);
     for (var k = lastDate.getDate(); k >= 0; k--) {  // 循环所有显示天数
       var kTime = new Date(year + '-' + mon + '-' + k),
         w = kTime.getDay(),
@@ -65,12 +60,11 @@ const pickerDateList = function (m) {
         dayJson.sat[0] = k;
       }
     }
-
     allDateArr.push(dayJson);
   }
 
   // 第一个星期 下一个月的几天
-  var lDArr = plWeekDate(lastDate.getDay());
+  var lDArr = plWeekDate(lastDate.getDay(), 0);
   for(var kay in allDateArr[0]){
     if(lDArr[kay][1] === true)
     allDateArr[0][kay] = lDArr[kay]
@@ -100,6 +94,6 @@ const pickerDateList = function (m) {
   return allDateArr;
 }
 
-export default pickerDateList;
+export default picker;
 
 

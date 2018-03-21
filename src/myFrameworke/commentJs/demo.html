@@ -9,6 +9,37 @@
 </head>
 <body>
 
-<script src="picker.js"></script>
+<script>
+  const deepClone = function (initalObj, finalObj) {
+    var obj = finalObj || {};
+    for (var i in initalObj) {
+      var prop = initalObj[i];
+      // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+      if(prop === obj) {
+        continue;
+      }
+      if (typeof prop === 'object') {
+        obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);
+        deepClone(prop, obj[i]);
+      } else {
+        obj[i] = prop;
+      }
+    }
+    return obj;
+  }
+  var obj = {
+    name: 'aa',
+    some: [1,2,{dd: 'dd'}],
+    ob: {
+      you: 'fuck',
+      he: [3,4,5]
+    }
+  }
+  var s = {}
+  deepClone(obj,s)
+  s.some[1] = 1;
+  console.log(s)
+  console.log(obj)
+</script>
 </body>
 </html>

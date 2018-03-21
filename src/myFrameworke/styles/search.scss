@@ -1,7 +1,7 @@
 @import 'comment/function';
 .search-form{
   border: 1px solid #999999;
-  min-width: 296px;
+  min-width: 196px;
   @include box(border-box);
   @include radus(4px);
   .search-icon{

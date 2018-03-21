@@ -1,13 +1,18 @@
 import React, {PropTypes} from 'react';
 import WrapWithSelect from '../hightOrderComponents/rc-select';
 
-class SelectDefault extends React.Component {
+class DefaultSelect extends React.Component {
+  /*componentDidMount() {
+    let self = this;
+    this.windowMouseover = window.addEventListener('mouseover', self.handleMouseover.bind(this))
+  }
+  handleMouseover (e) {
+    if(e.target.nodeName !== 'INPUT')
+      this.textInput.blur();
+  }*/
   render() {
     const props = this.props;
     const size = props.size && props.size === 'big' ? 32 : 26;
-    if(props.focus && props.mode === 'tags') {
-      this.textInput.focus();
-    }
     return (
       <div className="select-rc">
         {
@@ -38,15 +43,16 @@ const Option = (props) => {
   );
 }
 
-SelectDefault.PropTypes = {
+DefaultSelect.PropTypes = {
   name: PropTypes.object,
   mode: PropTypes.string
 }
+
 Option.PropTypes = {
   children: PropTypes.string.isRequired
 }
 
-const Select = WrapWithSelect(SelectDefault);
+const Select = WrapWithSelect(DefaultSelect);
 
 Select.Option = Option;
 

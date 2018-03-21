@@ -17,7 +17,7 @@ class Home extends React.Component {
   render() {
     const { switched } = this.props;
     return (
-      <div className="main" style={{left:switched?'58px':'208px'}}>
+      <div className="main" style={{left: switched ? '58px' : '208px'}}>
         <div className="main-bar">
           <h3>Search</h3>
           <Search
@@ -26,12 +26,12 @@ class Home extends React.Component {
           <br/>
           <Search
             placeholder="姓名/工號/CWR號"
-            width="400"
+            width="200"
             position="left"/>
           <br/>
           <Search
             placeholder="輸入內容"
-            width="500"
+            width="250"
             onSearch={(value) => this._searchHandle(value)}
           />
         </div>
@@ -88,9 +88,6 @@ class Home extends React.Component {
           <Button type="default">Default</Button>
           <br/>
           <Button type="disabled">Disabled</Button>
-        </div>
-        <div className="main-bar">
-          <h3>DatePicker</h3>
         </div>
       </div>
     );

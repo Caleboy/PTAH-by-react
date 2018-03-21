@@ -1,26 +1,8 @@
 require('../styles/iconMenu.scss');
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { NAV_LIST } from '../store/variableStore'
 import IconMenu from '../myFrameworke/components/IconMenu'
-
-let navList = [
-  {
-    index: 0,
-    name: '首頁',
-    img: 'home'
-  },
-  {
-    index: 1,
-    name: '建設人力資源管理',
-    img: 'manage'
-  },
-  {
-    index: 2,
-    name: '創建公司資料',
-    img: 'company'
-  }
-];
 
 class Menu extends React.Component {
   constructor(props) {
@@ -31,7 +13,7 @@ class Menu extends React.Component {
   }
   menuBarText() {
     let navBar = [];
-    navList.map(function(value){
+    NAV_LIST.map(function(value){
       navBar.push(
         <li
           key={value.index}
@@ -45,7 +27,7 @@ class Menu extends React.Component {
   }
   menuBarIcon() {
     let navBar = [];
-    navList.map(function(value){
+    NAV_LIST.map(function(value){
       navBar.push(
         <li
           key={value.index}
