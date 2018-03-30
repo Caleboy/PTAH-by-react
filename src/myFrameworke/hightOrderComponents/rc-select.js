@@ -59,8 +59,8 @@ export default (WrappedComponent) => {
     onHandleChange(e){
       let props = this.props;
       let value = e.target.value;
-      if(props.onSelect && typeof props.onSelect === 'function'){
-        props.onSelect(value);
+      if(props.onChange && typeof props.onChange === 'function'){
+        props.onChange(value);
       }
       this.setState({
         value
@@ -89,7 +89,7 @@ export default (WrappedComponent) => {
           onMouseDown={(e) => this.onDocumentClick(e)}
           onClick={(e) => this._handleClick(e)}
         >
-          <WrappedComponent {...omit(this.props,['className', 'width', 'children'])} {...newProps}/>
+          <WrappedComponent {...omit(this.props, ['className', 'width', 'children'])} {...newProps}/>
           {
             prefix ? <span
               className={selectIconClass}
@@ -134,17 +134,24 @@ export default (WrappedComponent) => {
     }
     _childHandleClick(e){
       let props = this.props,
-        text = e.target.textContent;
+        target = e.target,
+        text = target.textContent,
+        oTarget = target.target,
+        year = props.moy.slice(0, 4),
+        mon = props.moy.slice(5) - 0;
 
       text = text === 'today' ? new Date().getDate() : text;
-
       if(e.target.className.startsWith('dh') || text.length > 5) return;
-
-      let value = props.moy ? `${props.moy}-${text}` : text;
+      let moy = oTarget === 'false' ? `${ year }-${ mon }` : text > 20 ? `${ year }-${ mon - 1 }` : `${ year }-${ mon + 1 }`;
+      let value = props.moy ? `${ moy }-${ text }` : text;
 
       if(props.onSelect && typeof props.onSelect === 'function'){
         props.onSelect(value);
       }
+
+      /*if(props.onFocus && typeof props.onFocus === 'function'){
+        props.onFocus(value);
+      }*/
 
       this.setState({
         value,
@@ -152,6 +159,7 @@ export default (WrappedComponent) => {
       });
     }
   }
+
   NewComponent.propTypes = {
     mode: PropTypes.string,
     width: PropTypes.string || PropTypes.number,
@@ -161,5 +169,6 @@ export default (WrappedComponent) => {
     onSelect: PropTypes.func,
     className: PropTypes.string
   };
+
   return NewComponent
 }

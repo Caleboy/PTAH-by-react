@@ -22,7 +22,7 @@ export const plWeekDate = (gd, pday, initAct) => {
   if(pday === 0){
     for( var i in wJson ) {
       m++;
-      m < gd ? wJson[i] = [0, false] : wJson[i] = [m - gd, true];
+      m <= gd ? wJson[i] = [0, false] : wJson[i] = [m - gd, true];
     }
   } else {
     for( var i in wJson ) {

@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import WithrcSelect from '../hightOrderComponents/rc-select';
 import WrapPicker from '../hightOrderComponents/rc-picker';
 import { reDate, monthTrans, moyEstimate } from '../commentJs/reDate'
@@ -32,7 +32,7 @@ class DatePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      moy: '2018-03',
+      moy: '',
       dateTable: null
     }
   }
@@ -53,40 +53,65 @@ class DatePicker extends React.Component {
     let year = moyEstimate(this.state.moy).year,
       mon = moyEstimate(this.state.moy).month;
     return (
-      <DefaultDatePicker moy={`${year}-${mon}`}>
+      <DefaultDatePicker
+        moy={`${ year }-${ mon }`}
+        onSelect={ (value) => this._handleSelectDate(value) }
+        onChange={ value => this._handleChange(value) }
+        prefix={<i><img src={require('../images/date.png')} alt=""/></i>}
+      >
         <div className="dh y-m-skip">
           <a className="dh ye-prev" onClick={() => this._handlePrevYear()}> &lt;&lt; </a>
           <a className="dh mo-prev" onClick={() => this._handlePrevMonth()}> &lt; </a>
           <a className="dh mo-next" onClick={() => this._handleNextMonth()}> &gt; </a>
           <a className="dh ye-next" onClick={() => this._handleNextYear()}> &gt;&gt; </a>
-          <span> { `${monthTrans(mon)} ${year}` } </span>
+          <span> { `${ monthTrans(mon) } ${ year }` } </span>
         </div>
         {this.state.dateTable}
       </DefaultDatePicker>
     )
   }
+  _handleSelectDate(date) {
+    // console.log(date)
+    const DateTable = WrapPicker(date, date),
+      dateTable = <DateTable />;
+    this.setState({
+      dateTable
+    })
+  }
+  _handleChange(value) {
+    // console.log(value)
+    let date = value,
+      isDate = new Date(date).getMonth();
+    console.log(isDate)
+    if(isDate) return;
+    const DateTable = WrapPicker(date, date),
+      dateTable = <DateTable />;
+    this.setState({
+      dateTable
+    })
+  }
   _handlePrevMonth() {
     let year = moyEstimate(this.state.moy).year - 0,
       mon = moyEstimate(this.state.moy).month - 1,
-      moy = `${mon <= 0 ? year - 1 : year}-${mon <= 0 ? 12 : mon}`;
+      moy = `${ mon <= 0 ? year - 1 : year }-${ mon <= 0 ? 12 : mon }`;
     this.setStatePickerTab(moy);
   }
   _handleNextMonth() {
     let year = moyEstimate(this.state.moy).year - 0,
       mon = moyEstimate(this.state.moy).month - 0 + 1,
-      moy = `${mon > 12 ? year + 1 : year}-${mon > 12 ? 1 : mon}`;
+      moy = `${ mon > 12 ? year + 1 : year }-${ mon > 12 ? 1 : mon }`;
     this.setStatePickerTab(moy);
   }
   _handlePrevYear() {
     let year = moyEstimate(this.state.moy).year - 0,
       mon = moyEstimate(this.state.moy).month,
-      moy = `${year - 1}-${mon}`;
+      moy = `${ year - 1 }-${ mon }`;
     this.setStatePickerTab(moy);
   }
   _handleNextYear() {
     let year = moyEstimate(this.state.moy).year - 0,
       mon = moyEstimate(this.state.moy).month,
-      moy = `${year + 1}-${mon}`;
+      moy = `${ year + 1}-${mon }`;
     this.setStatePickerTab(moy);
   }
 }

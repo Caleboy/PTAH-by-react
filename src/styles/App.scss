@@ -20,6 +20,10 @@ input, select {
   @include box(border-box);
 }
 
+img{
+  vertical-align: top;
+}
+
 .clear-box:after {
   content: '';
   clear: both;

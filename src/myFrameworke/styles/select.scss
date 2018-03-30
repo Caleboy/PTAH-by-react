@@ -31,7 +31,7 @@
     top: 0;
     right: 0;
     margin-right: 4px;
-    padding: 2px;
+    padding: 6px;
     @include box(border-box);
     &.spin>img{
       transform: rotate(180deg);
