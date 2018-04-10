@@ -16,46 +16,46 @@
 
 ```html
 <Search
-            placeholder="姓名/工號/CWR號"
-            width="200"
-            position="left"/>
-          <br/>
+   placeholder="姓名/工號/CWR號"
+   width="200"
+   position="left"
+/>
 ```
 
 ```html
 <Search
-            placeholder="輸入內容"
-            width="250"
-            onSearch={(value) => this._searchHandle(value)}
-          />
+   placeholder="輸入內容"
+   width="250"
+   onSearch={(value) => this._searchHandle(value)}
+ />
 ```
 
 ### Select
 
 ```html
 <Select onSelect={(value) => this._selectHandle(value)}>
-            <Option>111</Option>
-            <Option>222</Option>
-            <Option>333</Option>
-          </Select>
+   <Option>111</Option>
+   <Option>222</Option>
+   <Option>333</Option>
+</Select>
 ```
 
 ```html
 <Select
-            mode="tags"
-            onSelect={(value) => this._selectHandle(value)}
-            size='big'
-            prefix={<i><img src={require('../images/down-01.png')} alt=""/></i>}
-          >
-            <Option>111</Option>
-            <Option>222</Option>
-            <Option>333</Option>
-            <Option>444</Option>
-            <Option>555</Option>
-            <Option>666</Option>
-            <Option>777</Option>
-            <Option>888</Option>
-          </Select>
+    mode="tags"
+    onSelect={(value) => this._selectHandle(value)}
+    size='big'
+    prefix={<i><img src={require('../images/down-01.png')} alt=""/></i>}
+ >
+    <Option>111</Option>
+    <Option>222</Option>
+    <Option>333</Option>
+    <Option>444</Option>
+    <Option>555</Option>
+    <Option>666</Option>
+    <Option>777</Option>
+    <Option>888</Option>
+</Select>
 ```
 
 ### DatePicker
@@ -68,10 +68,10 @@
 
 ```html
 <Icon/>
-          <br/>
-          <Icon className="icon-search"/>
-          <br/>
-          <Icon type="search" spin={true}/>
+<br/>
+<Icon className="icon-search"/>
+<br/>
+<Icon type="search" spin={true}/>
 ```
 
 
@@ -80,10 +80,10 @@
 
 ```html
 <Button>button</Button>
-          <br/>
-          <Button type="primary">Primary</Button>
-          <br/>
-          <Button type="default">Default</Button>
-          <br/>
-          <Button type="disabled">Disabled</Button>
+<br/>
+<Button type="primary">Primary</Button>
+<br/>
+<Button type="default">Default</Button>
+<br/>
+<Button type="disabled">Disabled</Button>
 ```
