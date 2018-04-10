@@ -72,7 +72,7 @@
           <Icon className="icon-search"/>
           <br/>
           <Icon type="search" spin={true}/>
-        ```
+```
 
 
 ### Button
