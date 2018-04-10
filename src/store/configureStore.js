@@ -9,7 +9,7 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore)
 
 export default function configureStore (initialstate) {
-  const store = createStoreWithMiddleware(reducer, initialstate)
+  const store = createStoreWithMiddleware(reducer, initialstate);
 
   //热替换选项
   if (module.hot) {

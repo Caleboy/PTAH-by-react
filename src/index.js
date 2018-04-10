@@ -23,10 +23,10 @@ render(
   <Provider store={store}>
     <Router>
       <div>
-        <App />
-        <Route exact path="/" component={Home}/>
-        <Route path="/manage" component={Manage}/>
-        <Route path="/company" component={Company}/>
+        <App/>
+        <Route exact path="/" component={ Home }/>
+        <Route path="/manage" component={ Manage }/>
+        <Route path="/company" component={ Company }/>
       </div>
     </Router>
   </Provider>,

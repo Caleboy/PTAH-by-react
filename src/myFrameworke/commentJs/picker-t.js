@@ -18,7 +18,7 @@ const picker = function (m, optDate) {
     allDateArr = [];  // 当月所有时间数组
 
   if(mon == 1){
-    pDay = new Date(year - 1, 12, 0),
+    pDay = new Date(year-1, 12, 0),
       pLastDate = new Date((year - 1) + '-' + 12 + '-' + pDay.getDate());
   }
 
