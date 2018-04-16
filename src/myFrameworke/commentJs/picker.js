@@ -1,6 +1,10 @@
 import { plWeekDate } from './reDate'
 import { weekDayJson } from "./variable"
 import { deepClone } from "./isObject"
+import Picker from "./GetPicker"
+
+let newPicker = new Picker(24, '5 next');
+console.log(newPicker.colCalendarArray);
 
 /*
  * 生成日历列表
@@ -29,6 +33,14 @@ const picker = function (m, optDate) {
   if(firstDateWeekTime == 0){
     MonthDay += 1;
   }
+
+  let firstArray = new Picker(24, `${firstDateWeekTime} prev`)
+  let calendarArray = [firstArray.colCalendarArray];
+  for (var k = 1; k < MonthDay; k++) {
+    let oArray = new Picker((8-firstDateWeekTime)*k)
+    calendarArray.push(oArray.colCalendarArray)
+  }
+  console.log(calendarArray)
 
   for (var j = 0; j < MonthDay; j++) {
     var dayJson = deepClone(weekDayJson);
